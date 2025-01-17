@@ -1,6 +1,6 @@
-import type { TiptapRef } from '@/components/tiptap/tiptap-editor.tsx'
-import { TiptapEditor } from '@/components/tiptap/tiptap-editor.tsx'
-import { Button } from '@/components/ui/button.tsx'
+import type { TiptapRef } from '@/components/tiptap/tiptap-editor'
+import { TiptapEditor } from '@/components/tiptap/tiptap-editor'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -9,10 +9,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog.tsx'
-import type { TextContentData } from '@/components/widgets/widgets-type.d.ts'
+} from '@/components/ui/dialog'
+import type { TextContentData } from '@/components/widgets/widgets-type'
 import { UserPen } from 'lucide-react'
 import { useRef, useState } from 'react'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { Input } from '@/components/ui/input'
 
 const TextContentForm = ({
   data,
@@ -28,7 +36,9 @@ const TextContentForm = ({
   const handleOpenChange = (open: boolean) => {
     if (open) {
       setOpen(true)
-      setContent(propsData.content)
+      const tempDiv = document.createElement('div')
+      tempDiv.innerHTML = propsData.content
+      setContent(tempDiv.innerHTML)
     } else {
       setOpen(false)
       setContent('')
@@ -42,7 +52,7 @@ const TextContentForm = ({
         ...data,
         propsData: {
           ...propsData,
-          content,
+          content: content.replace(/\s+/g, match => '&nbsp;'.repeat(match.length)),
         },
       })
     }

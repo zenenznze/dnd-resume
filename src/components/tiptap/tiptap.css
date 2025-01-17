@@ -2,6 +2,10 @@
   outline: none;
 }
 
+.preserve-whitespace {
+  white-space: pre-wrap !important;
+}
+
 .tiptap p.is-editor-empty:first-child::before {
   float: left;
   height: 0;
@@ -11,6 +15,7 @@
 }
 
 .tiptap {
+  white-space: pre-wrap;
   p {
     min-height: 22.5px;
   }

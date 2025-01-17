@@ -25,6 +25,11 @@ const TiptapEditor = ({ content, ref }: TiptapProps) => {
       const lastPosition = editor.state.doc.content.size
       editor.chain().focus().setTextSelection(lastPosition).run()
     },
+    editorProps: {
+      attributes: {
+        class: 'preserve-whitespace',
+      },
+    },
   })
 
   const handleClickBg = (e: MouseEvent<HTMLDivElement>) => {
